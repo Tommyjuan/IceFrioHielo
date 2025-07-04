@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Error de conexión con el servidor");
             console.error(error);
         }
-    });
-
+    });})//aca se sierro para despues abrirlo 
+/*
     // Validación y envío del formulario de login
     loginFormBtn.addEventListener('click', async () => {
         const valid = validateForm(loginInputs, loginEmailInput, loginEmailError);
@@ -141,4 +141,4 @@ document.addEventListener('DOMContentLoaded', () => {
             errorElement.style.display = 'none';
         }
     }
-});
+});*/
