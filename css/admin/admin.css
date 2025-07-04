@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
+    font-family: system-ui, sans-serif;
 }
 
 body {
@@ -153,7 +153,7 @@ body {
 }
 
 .container button {
-    background-color: #512da8;
+    background-color: violet;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -164,6 +164,7 @@ body {
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+    transform: skew(-30deg) !important;
 }
 
 .container button.hidden {
@@ -179,6 +180,7 @@ body {
     flex-direction: column;
     padding: 0 40px;
     height: 100%;
+    
 }
 
 .container input {
@@ -190,6 +192,7 @@ body {
     border-radius: 8px;
     width: 100%;
     outline: none;
+    transform: skew(-30deg) !important;
 }
 
 input.error {
