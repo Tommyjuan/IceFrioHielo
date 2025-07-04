@@ -176,7 +176,7 @@
     .feature-icon {
       width: 140px;
       height: 140px;
-      background-color: var(--secondary-color);
+
       border-radius: 50%;
       margin: 0 auto 1rem;
     }
@@ -186,19 +186,29 @@
       margin-bottom: 1rem;
     }
     
-    .btn {
+    .btn-outline-primary{
       display: inline-block;
       padding: 0.5rem 1rem;
-      background-color: var(--primary-color);
+      background-color: violet !important;
       color: white;
       text-decoration: none;
-      border-radius: 0.25rem;
+      border-radius: 0.30rem;
       border: none;
       cursor: pointer;
+      transform: skew(-35deg) !important;
+      font-weight:bold ;
+    }
+    
+      .form-control.me-2[type="search"] {
+       transform: skew(-35deg) !important;
+       padding: 6px 12px !important;
+       background-color: #FFFFFF !important;
+       margin: 0 !important;
     }
     
     .btn-secondary {
       background-color: var(--secondary-color);
+      transform: rotate(-20deg) !important;
     }
     
     /* Featurettes */
@@ -306,3 +316,4 @@
         width: 100%;
       }
     }
+
