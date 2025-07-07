@@ -405,7 +405,7 @@
 .carrusel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 300%; /* 3 imágenes */
+  width: 300%;
 }
 
 .carrusel-item {
@@ -418,6 +418,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 
 @media (max-width: 768px) {
   .carrusel {
