@@ -317,3 +317,76 @@
       }
     }
 
+/* style.css */
+
+/* --- CABECERA --- */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #0057a0, #00c3ff);
+  color: white;
+  font-family: Arial, sans-serif;
+}
+.cabecera .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.cabecera .menu ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.cabecera .menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+.cabecera .menu a:hover {
+  text-decoration: underline;
+}
+
+/* --- PIE DE PÁGINA --- */
+.pie {
+  background-color: #222;
+  color: #eee;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+.pie .contenido {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.pie .columna {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 1rem;
+}
+.pie .columna h3,
+.pie .columna h4 {
+  color: #00c3ff;
+}
+.pie .columna ul {
+  list-style: none;
+  padding: 0;
+}
+.pie .columna ul li {
+  margin: 0.3rem 0;
+}
+.pie .columna ul a {
+  color: #ccc;
+  text-decoration: none;
+}
+.pie .columna ul a:hover {
+  text-decoration: underline;
+}
+.pie .copy {
+  text-align: center;
+  margin-top: 1rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}

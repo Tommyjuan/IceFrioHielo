@@ -44,3 +44,28 @@
     // Iniciar carrusel automático
     startAutoSlide();
   
+
+// Cargar cabecera y pie de página
+    
+window.addEventListener('DOMContentLoaded', () => {
+    includeHTML('#cabecera', '../template/cabecera.html');
+    includeHTML('#pie', '../template/pie.html');
+});
+
+function includeHTML(id, file) {
+    const element = document.querySelector(id);
+    if (!element) return;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', file, true);
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                element.innerHTML = this.responseText;
+            } else {
+                element.innerHTML = '<!-- No se pudo cargar ' + file + ' -->';
+            }
+        }
+    };
+    xhr.send();
+}
+
