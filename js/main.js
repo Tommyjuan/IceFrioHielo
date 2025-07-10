@@ -33,6 +33,6 @@ window.addEventListener('DOMContentLoaded', () => {
       carruselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 
-    setInterval(cambiarImagen, 5000); // cada 5 segundos
+    setInterval(cambiarImagen, 3000); // cada 5 segundos
   }
 });
