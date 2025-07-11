@@ -1,4 +1,36 @@
-from fastapi import FastAPI, HTTPException
+import os
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from routes import user_routes
+
+
+app = FastAPI()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PAGES_DIR = os.path.join(BASE_DIR, "..", "pages")
+
+app.mount("/pages", StaticFiles(directory=PAGES_DIR), name="pages")
+
+# Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Ajusta en producción
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Incluir rutas
+app.include_router(user_routes.router)
+
+
+
+
+
+
+
+"""from fastapi import FastAPI, HTTPException
 from models.item import Item
 import os
 import json
@@ -57,6 +89,6 @@ async def PutItem(item_id:int, item:Item):
             raise HTTPException(status_code=400, detail="Se fumo la RQ")
     else:
         raise HTTPException(status_code=404, detail="ID no existe")
-   
+   """
  
 ##USUARIOS

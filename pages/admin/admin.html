@@ -5,14 +5,14 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Admin IceFrioHielo</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!--<link rel='stylesheet' type='text/css' media='screen' href='/css/index.css'>-->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <!--<script defer src='indes.js'></script>  Cambiado a 'defer' para cargar el script después del DOM -->
     <link rel="stylesheet" href="/css/admin/admin.css">
     <script defer src="/js/admin/admin.js"></script>
 </head>
 <body>
     <div id="container" class="container">
+
+        <!-- Formulario de registro -->
         <div class="form-container sign-up">
             <form action="#">
                 <h1>Crear Cuenta</h1>
@@ -25,14 +25,21 @@
                 <span>o usa tu correo electrónico para registrarte</span>
                 <input type="text" id="register-nombre" placeholder="Nombre" required>
                 <small class="error-message"></small>
+
                 <input type="email" id="register-email" placeholder="Correo Electrónico" required>
                 <small id="register-email-error" class="error-message"></small>
+
                 <input type="password" placeholder="Contraseña" required>
                 <small class="error-message"></small>
+
+                <!-- 🔽 CAMPO NUEVO PARA SELECCIONAR ROL -->
+                <input type="hidden" id="register-rol" value="cliente">
+
                 <button type="button" id="register-btn">Registrarse</button>
             </form>
         </div> 
 
+        <!-- Formulario de inicio de sesión -->
         <div class="form-container sign-in">
             <form action="#">
                 <h1>Iniciar Sesión</h1>
@@ -45,13 +52,16 @@
                 <span>o usa tu correo y contraseña</span>
                 <input type="email" id="login-email" placeholder="Correo Electrónico" required>
                 <small id="login-email-error" class="error-message"></small>
+
                 <input type="password" placeholder="Contraseña" required>
                 <small class="error-message"></small>
-                <a href="#" class="fp">¿Olvidaste tu contraseña?</a>
+
+                <a href="/pages/recuperar_contraseña/recuperar.html" class="fp">¿Olvidaste tu contraseña?</a>
                 <button type="button" id="login-btn">Iniciar Sesión</button>
             </form>
         </div>
 
+        <!-- Panel de cambio entre login y registro -->
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
@@ -66,6 +76,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </body>
 </html>

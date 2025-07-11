@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Elementos del DOM
     const container = document.getElementById('container');
     const registerBtn = document.getElementById('register');
     const loginBtn = document.getElementById('login');
@@ -12,106 +11,94 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerInputs = document.querySelectorAll('.sign-up input');
     const loginInputs = document.querySelectorAll('.sign-in input');
 
-    registerBtn.addEventListener('click', () => {
-        container.classList.add("active");
-    });
+    // Cambiar a formulario de registro
+    registerBtn.addEventListener('click', () => container.classList.add("active"));
+    loginBtn.addEventListener('click', () => container.classList.remove("active"));
 
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove("active");
-    });
-
-    // Validación y envío del formulario de registro
+    // ✅ REGISTRO
     registerFormBtn.addEventListener('click', async () => {
         const valid = validateForm(registerInputs, registerEmailInput, registerEmailError);
         if (!valid) return;
 
-        // **Capturamos TODOS los campos que el backend necesita**
         const nombre = document.getElementById("register-nombre").value.trim();
-        const correo = document.getElementById("register-email").value.trim();
-        const contrasena = document.querySelector('.sign-up input[placeholder="Contraseña"]').value;
-
-        // Validar que nombre no esté vacío
-        if(nombre === "") {
-            alert("El nombre es obligatorio");
-            return;
-        }
+        const email = document.getElementById("register-email").value.trim();
+        const password = document.querySelector('.sign-up input[placeholder="Contraseña"]').value;
+        const rol = "cliente"; // 🔒 Se fuerza a cliente, no editable por el usuario
 
         try {
-            const res = await fetch("http://localhost:8080/api/auth/register", {
+            const res = await fetch("http://localhost:8000/api/auth/register", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                // Aquí enviamos el JSON con todos los campos completos
-                body: JSON.stringify({ nombre, correo, contrasena })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nombre, email, password, rol })
             });
 
             if (res.ok) {
                 alert("Registro exitoso");
-                window.location.href = "/login"; // Redirige donde quieras
+                container.classList.remove("active"); // Te lleva al login visualmente
             } else {
                 const errorText = await res.text();
                 alert("Error en el registro: " + errorText);
             }
         } catch (error) {
             alert("Error de conexión con el servidor");
-            console.error(error);
         }
-    });})//aca se sierro para despues abrirlo 
-/*
-    // Validación y envío del formulario de login
+    });
+
+    // ✅ LOGIN
     loginFormBtn.addEventListener('click', async () => {
         const valid = validateForm(loginInputs, loginEmailInput, loginEmailError);
         if (!valid) return;
 
-        const correo = document.getElementById("login-email").value.trim();
-        const contrasena = document.querySelector('.sign-in input[placeholder="Contraseña"]').value;
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.querySelector('.sign-in input[placeholder="Contraseña"]').value;
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/login", {
+            const response = await fetch("http://localhost:8000/api/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ correo, contrasena })
+                body: JSON.stringify({ email, password })
             });
 
-            const data = await response.text();
+            const data = await response.json();
 
             if (response.ok) {
                 alert("Inicio de sesión exitoso");
-                window.location.href = "/crud"; // Redirige al CRUD real
-            } else {
-                alert("Error: " + data);
-            }
 
+                // 🔁 Redirección basada en el valor retornado por el backend
+                if (data.message === "admin") {
+                    window.location.href = "/pages/crud/crud.html";
+                } else {
+                    window.location.href = "/pages/ofertas/ofertas.html";
+                }
+            } else {
+                alert("Error: " + (data.detail || "Datos inválidos"));
+            }
         } catch (error) {
             alert("Error de conexión al servidor");
-            console.error(error);
         }
     });
 
-    // Funciones de validación (sin cambios)
+    // 🔍 VALIDACIONES
     function validateForm(inputs, emailInput, emailError) {
         let allFilled = true;
         inputs.forEach(input => {
             if (input.value.trim() === "") {
                 input.classList.add('error');
-                allFilled = false;
                 showErrorMessage(input, 'Este campo es obligatorio');
+                allFilled = false;
             } else {
                 input.classList.remove('error');
                 hideErrorMessage(input);
             }
         });
 
-        if (!validateEmail(emailInput, emailError)) {
-            allFilled = false;
-        }
+        if (!validateEmail(emailInput, emailError)) allFilled = false;
         return allFilled;
     }
 
     function validateEmail(input, errorElement) {
         const email = input.value;
-        if (!email.includes('@gmail.com')) {
+        if (!email.includes('@gmail.com','admin.com')) {
             input.classList.add('error');
             errorElement.textContent = 'El correo debe ser @gmail.com';
             errorElement.style.display = 'block';
@@ -141,4 +128,4 @@ document.addEventListener('DOMContentLoaded', () => {
             errorElement.style.display = 'none';
         }
     }
-});*/
+});
