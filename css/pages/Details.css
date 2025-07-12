@@ -1,10 +1,10 @@
-  /* --- CABECERA --- */
+/* -------------------- CABECERA -------------------- */
 .cabecera {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(90deg, #0057a0, #00c3ff);
+  background: linear-gradient(90deg, violet, rgb(243, 108, 243));
   color: white;
   font-family: Arial, sans-serif;
 }
@@ -26,7 +26,7 @@
   text-decoration: underline;
 }
 
-/* --- PIE DE PÁGINA --- */
+/* -------------------- PIE DE PÁGINA -------------------- */
 .pie {
   background-color: #222;
   color: #eee;
@@ -70,483 +70,208 @@
   color: #888;
 }
 
-  
-  
-  /* Estilos generales */ 
-
-  
-  body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-  }
-
-  /*este es el encabesado */
-  header {
-    background-color: #1f5ea7;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+/* -------------------- HEADER GENERAL -------------------- */
+header {
+  background-color: violet;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
-
-  header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      /*background-color: #bafce8;*/
-  }
-
-  .header-left {
-      display: flex;
-      align-items: center;
-  }
-
-  .header-left .logo {
-      height: 100px;
-      margin-right: 15px;
-  }
-
-  .header-right {
-      display: flex;
-      align-items: center;
-  }
-
-  .header-right h1 {
-      margin: 0 20px 0 0;
-      font-size: 1.5em;
-  }
-
-  .header-right button {
-      background-color: #7f94f1;
-      border: none;
-      padding: 10px 20px;
-      margin-left: 10px;
-      cursor: pointer;
-  }
-
-  /*estilo para la busqueda */
-  .buscador-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px;
-    background: rgb(140, 176, 243);
-    border-radius: 8px;
-    margin-left: 20px;
-    margin-right: 10px;
-  }
-
-  #buscador {
-    padding: 6px 12px;
-    width: 250px;
-    border-radius: 6px;
-    border: 1px solid #44aaee;
-  }
-
-
-  /*la galeria de la fotos */
-  .galeria-slider {
-    width: 100%;
-    margin: 0; /* elimina centrado */
-    overflow: hidden;
-    border-radius: 0; /* opcional: puedes mantenerlo si quieres esquinas redondeadas */
-    box-shadow: none; /* opcional: puedes mantener la sombra */
-  }
-
-  .galeria {
-    display: flex;
-    transition: transform 0.6s ease;
-    width: 100%;
-  }
-
-  .slide {
-    min-width: 100%;
-    height: 400px;
-    background-size: cover; /* mejor que contain para ocupar todo el espacio */
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-
-  /*la galeria de la fotos 
-  .galery{
-      display: flex;
-      height: 20rem;
-      gap: 1rem;
-      justify-content: center; /* Centrar horizontalmente los elementos 
-  }
-  .galery > div{
-      flex: 1;
-      border-radius: 1rem;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: auto 100%;
-      transition: all .8s cubic-bezier(.25, .4, .45, .1.4);
-      margin-bottom: 1rem; /* Agregar espacio entre las imágenes 
-  }
-  .galery > div:hover{
-      flex: 5;
-  }*/
-
-  /* AQUI COMIENSA LOS ESTILOS DEL MENU 
-  .navbar {
-     overflow: hidden;
-    }
-    */
-    
-    .navbar a {
-      float: left;
-      font-size: 16px;
-      color: rgba(219, 146, 62, 0.623);
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-    
-    .dropdown {
-      float: left;
-      overflow: hidden;
-    }
-    
-    .dropdown .dropbtn {
-      font-size: 16px;
-      border: none;
-      outline: none;
-      color: rgb(15, 15, 15);
-      padding: 14px 16px;
-      background-color: inherit;
-      font-family: inherit;
-      margin: 0;
-    }
-    
-    .navbar a:hover, .dropdown:hover .dropbtn {
-      background-color: rgba(42, 230, 151, 0.767);/*este es el color de las baras de arriba */
-    }
-    
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgb(255, 255, 255);
-      z-index: 1;
-    }
-    
-    .dropdown-content a {
-      float: none;
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-    
-    .dropdown-content a:hover {
-      background-color:rgba(79, 183, 243, 0.986);/* este es el color de la selecion de por dentro */
-    }
-    
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    
-
-  /*este es lo que esta dentro del menu */
-  nav ul {
-      list-style-type: none;
-      padding: 0;
-      background-color: rgb(42, 230, 151, 0.767 );/* este es color que se muestra primero */
-  }
-
-  nav ul li {
-      display: inline;
-      margin-right: 10px;
-  }
-
-  nav ul li a {
-      text-decoration: none;
-      color: rgb(228, 33, 33);
-  }
-  /*---------- AQUI TERMINA EL MENU -----------*/
-
-
-  /* Estilos de secciones */
-  section {
-      padding: 40px;
-  }
-
-  section h2 {
-      font-size: 24px;
-      margin-top: 0;
-  }
-
-  /*-------- ACA COMIENSA EL ESTILO DEL CARRITO --------- */
-
-  #carrito-principal {
-    margin: 5px 0 5px auto;
-    max-width: 150px;
-    padding: 17px;
+/* -------------------- BUSCADOR -------------------- */
+.buscador-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: violet;
+  border-radius: 8px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+#buscador {
+  padding: 6px 12px;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #44aaee;
 }
 
+/* -------------------- GALERÍA -------------------- */
+.galeria-slider {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+.galeria {
+  display: flex;
+  transition: transform 0.6s ease;
+  width: 100%;
+}
+.slide {
+  min-width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
-  .agregar-al-carrito {
-      background-color: #4caf50; /* Color de fondo verde */
-      color: white; /* Color del texto blanco */
-      border: none; /* Sin borde */
-      padding: 15px 15px; /* Relleno interno */
-      text-align: center; /* Alineación de texto al centro */
-      text-decoration: none; /* Sin decoración de texto */
-      display: inline-block; /* Visualización en línea */
-      font-size: 12px; /* Tamaño de fuente */
-      cursor: pointer; /* Cursor tipo puntero */
-      border-radius: 5px; /* Bordes redondeados */
-      margin-left: auto; /* Mueve el botón hacia la derecha */
-      display: flex; /* Utiliza flexbox para centrar verticalmente */
-      align-items: center; /* Centra verticalmente el contenido */
-  }
+/* -------------------- MENÚ DROPDOWN -------------------- */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: rgba(219, 146, 62, 0.623);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  color: rgb(15, 15, 15);
+  padding: 14px 16px;
+  background-color: inherit;
+}
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgba(42, 230, 151, 0.767);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px #fff;
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: rgba(79, 183, 243, 0.986);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-  .agregar-al-carrito:hover {/* Cambia el color al pasar sobre el botón */
-      background-color: rgb(64, 114, 161); 
-  }
+/* -------------------- PRODUCTOS -------------------- */
+.producto-contenedor {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+.producto {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.producto img {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.producto p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.producto .precio {
+  font-weight: bold;
+  color: purple;
+  margin-bottom: 10px;
+}
+.agregar-al-carrito {
+  background-color: violet;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transform: skew(-33deg) !important;
+}
+.agregar-al-carrito:hover {
+  background-color: rgb(240, 83, 240);
+}
+.icono-carrito {
+  margin-right: 5px;
+  font-size: 15px;
+}
 
-  /*-------Estilo para el icono de carrito-------- */
-  .icono-carrito {
-      margin-right: 5px; 
-      font-size: 15px; 
-  }
-  /*--------aca termina el estilo del carrito ---------*/
+/* -------------------- WHATSAPP -------------------- */
+#whatsapp-link {
+  display: inline-block;
+  padding: 15px 15px;
+  background-color: #25d366;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+#whatsapp-link:hover {
+  background-color: #128C7E;
+}
 
-  /*---------- ACA COMIENSA WHATSAPP COMPRAR ---------*/
-  #whatsapp-link {
-      display: inline-block;
-      padding: 15px 15px;
-      background-color: #25d366; /* Color verde de WhatsApp */
-      color: #fff; /* Color del texto blanco */
-      text-decoration: none; /* Sin subrayado */
-      border-radius: 5px; /* Bordes redondeados */
-      margin-top: 10px; /* Espacio superior */
-      /* float: right;  Alineación a la derecha */
-  }
-
-  #whatsapp-link:hover {
-      background-color: #128C7E; /* Cambia el color al pasar el ratón sobre el enlace */
-  }
-  /*---------Aca teemina whatsapp-------------*/
-
-  /*------- AQUI COMIENSAN LAS COLUPMAS DE LOS PRODUCTOS -------------- */
-  /* Estilos generales del contenedor de productos */
-  .producto-contenedor {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 3fr)); /* Ajusta el ancho mínimo de las columnas */
-      gap: 30px; /* Espacio entre las columnas */
-      margin: 20px auto; /* Centra el contenedor */
-    }
-    
-    /* Estilos para cada producto */
-    .producto {
-      border: 1px solid #ddd;
-      padding: 20px;
-      text-align: center;
-      position: relative; /* Permite colocar elementos sobre la caja del producto */
-      border-radius: 10px; /* Borde redondeado */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    }
-    
-    /* Estilos para la imagen del producto */
-    .producto img {
-      max-width: 100%;
-      height: 200px; /* Ajusta la altura de la imagen */
-      margin-bottom: 20px;
-    }
-    
-    /* Estilos para el título del producto */
-    .producto h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    
-    /* Estilos para la descripción del producto */
-    .producto p {
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    
-    /* Estilos para el botón "Agregar al carrito" 
-    .producto .agregar-al-carrito {
-      display: block;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    /* Estilos para el botón al pasar el mouse
-    .producto .agregar-al-carrito:hover {
-      background-color: #0056b3;
-    }*/
-    
-    /* Estilos para el bloque de tallas */
-    .tallas {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    
-    /* Estilos para cada opción de talla */
-    .tallas li {
-      display: inline-block;
-      margin: 5px;
-      padding: 10px 15px;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    /* Estilos para la opción de talla seleccionada */
-    .tallas li.selected {
-      background-color: #007bff;
-      color: white;
-    }
-    
-    /* Estilos para el botón "Me gusta" */
-    .me-gusta {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    
-    .me-gusta button {
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    .me-gusta button:hover {
-      background-color: #eee;
-    }
-    
-
-
-  /*-------- ESPASIO ENTER EL CONTENIDO Y EL FOOTER --------*/
-  #conjuntos .producto-contenedor {
-      margin-bottom: 50px;
-  }
-
-  /*------------- ESTILOS DEL FOOTER  -------------
-  footer {
-      background-color: #888782be;
-      color: white;
-      text-align: center;
-      padding: 20px;
-  }*/
-
-  /* Estilos generales del footer */
-  .footer {
-      background-color: #0b2154;
-      color: white;
-      padding: 40px 20px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-  }
-
-  .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      max-width: 1300px;
-      margin: 0 auto;
-  }
-
-  .footer-column {
-      flex: 1 1 200px;
-      margin: 20px;
-  }
-
-  .footer-column h4 {
-      color: #fff;
-      font-size: 16px;
-      margin-bottom: 10px;
-  }
-
-  .footer-column ul {
-      list-style: none;
-      padding: 0;
-  }
-
-  .footer-column ul li {
-      margin-bottom: 6px;
-      color: #ddd;
-  }
-
-  .footer-column ul li a {
-      color: #ddd;
-      text-decoration: none;
-  }
-
-  .footer-column ul li a:hover {
-      text-decoration: underline;
-  }
-
-  .footer-logo {
-      max-width: 100px;
-      margin-bottom: 10px;
-  }
-
-  /* Estilos para la parte inferior del footer */
-  .footer-bottom {
-      text-align: center;
-      border-top: 1px solid #1f3974;
-      padding-top: 30px;
-      margin-top: 30px;
-  }
-
-  /* Íconos de medios de pago: más grandes y espaciados */
-  .payment-methods i {
-      font-size: 40px;
-      margin: 0 15px;
-      color: white;
-      transition: color 0.3s ease;
-  }
-
-  .payment-methods i:hover {
-      color: #00b2ff;
-  }
-
-  /* Logos de la sección inferior */
-  .footer-logos img {
-      height: 30px;
-      margin: 5px 10px;
-      vertical-align: middle;
-  }
-
-  /* Información legal y créditos */
-  .legal-info, .footer-credits {
-      margin-top: 15px;
-      color: #ccc;
-  }
-
-  .footer-credits a {
-      color: #88aaff;
-      text-decoration: none;
-  }
-
-  /* Íconos de redes sociales */
-  .social-icons {
-      margin-top: 20px;
-  }
-
-  .social-icons a {
-      margin: 0 10px;
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
-  }
+/* -------------------- FOOTER NUEVO -------------------- */
+.footer {
+  background-color: #0b2154;
+  color: white;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.footer-column {
+  flex: 1 1 200px;
+  margin: 20px;
+}
+.footer-column h4 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-column ul li {
+  margin-bottom: 6px;
+  color: #ddd;
+}
+.footer-column ul li a {
+  color: #ddd;
+  text-decoration: none;
+}
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1f3974;
+  padding-top: 30px;
+  margin-top: 30px;
+}
+.social-icons {
+  margin-top: 20px;
+}
+.social-icons a {
+  margin: 0 10px;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
