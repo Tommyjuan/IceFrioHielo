@@ -2,27 +2,34 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from routes import user_routes
-
+from routes import user_routes, product_routes  # 👈 Se añade la parte de productos
 
 app = FastAPI()
 
+# Definir rutas de páginas HTML
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PAGES_DIR = os.path.join(BASE_DIR, "..", "pages")
 
 app.mount("/pages", StaticFiles(directory=PAGES_DIR), name="pages")
 
+# Servir archivos de imágenes (subidas)
+UPLOADS_DIR = os.path.join(BASE_DIR, "static", "uploads")
+os.makedirs(UPLOADS_DIR, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=UPLOADS_DIR), name="uploads")
+
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Ajusta en producción
+    allow_origins=["*"],  # Cambiar en producción
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Incluir rutas
-app.include_router(user_routes.router)
+app.include_router(user_routes.router)         # ✅ Tu login/registro intacto
+app.include_router(product_routes.router)      # ✅ Ahora se incluye la parte de productos
+
 
 
 

@@ -5,10 +5,45 @@ const categoriasContainer = document.getElementById("categoriasContainer");
 const productoForm = document.getElementById("productoForm");
 const inputImagen = document.getElementById("imagen");
 
-const URL_BASE_IMAGENES = "http://localhost:8080/uploads/";
-const BACKEND_URL = "http://localhost:8080/api/productos";
+// URLs
+const URL_BASE_IMAGENES = "http://localhost:8000/uploads/";
+const BACKEND_URL = "http://localhost:8000/api/productos";
 
-// Evento para guardar o editar producto
+// Detectar si viene con ?editar=ID
+const urlParams = new URLSearchParams(window.location.search);
+const idEditar = urlParams.get("editar");
+
+// ✅ Cargar datos desde localStorage si existen
+const productoLocal = localStorage.getItem("producto_editar");
+if (idEditar && productoLocal) {
+  const producto = JSON.parse(productoLocal);
+
+  document.getElementById("nombre").value = producto.nombre;
+  document.getElementById("descripcion").value = producto.descripcion;
+  document.getElementById("precio").value = producto.precio;
+  document.getElementById("cantidad").value = producto.cantidad;
+  document.getElementById("categoria").value = producto.categoria;
+
+  productoEditando = producto;
+
+  document.querySelector("#productoForm button[type=submit]").textContent = "Editar Producto";
+}
+
+// Detectar si viene con ?editar=ID y cargar ese producto
+window.addEventListener("DOMContentLoaded", async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const editarId = urlParams.get("editar");
+
+  await cargarProductos(); // Siempre carga productos para tabla y categorías
+
+  if (editarId) {
+    await cargarProductoEditar(editarId); // ✅ CORREGIDO nombre de función
+    const boton = document.querySelector("#productoForm button[type=submit]");
+    if (boton) boton.textContent = "Editar Producto";
+  }
+});
+
+// Evento submit: agregar o editar
 productoForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -24,36 +59,69 @@ productoForm.addEventListener("submit", async (e) => {
     const newName = imagenFile.name.replace(/\s+/g, "_");
     const renamedFile = new File([imagenFile], newName, { type: imagenFile.type });
     formData.append("imagen", renamedFile);
+  } else if (productoEditando?.imagen) {
+    formData.append("imagen_actual", productoEditando.imagen); // ✅ ENVÍA NOMBRE IMAGEN EXISTENTE
   }
 
   try {
-    if (productoEditando) {
-      await fetch(`${BACKEND_URL}/${productoEditando.id}`, {
-        method: "PUT",
-        body: formData,
-      });
-      productoEditando = null;
-    } else {
-      await fetch(BACKEND_URL, {
-        method: "POST",
-        body: formData,
-      });
-    }
+    const url = productoEditando ? `${BACKEND_URL}/${productoEditando.id}` : BACKEND_URL;
+    const method = productoEditando ? "PUT" : "POST";
 
+    await fetch(url, {
+      method,
+      body: formData,
+    });
+
+    productoEditando = null;
     productoForm.reset();
     await cargarProductos();
     await actualizarOtrasPaginas();
+
+    // Limpiar localStorage si se estaba editando
+    localStorage.removeItem("producto_editar");
+
+    // Redirigir después de editar
+    if (idEditar) {
+      window.location.href = "/pages/crud/lista.html";
+    }
+
+    // Restaurar texto del botón
+    document.querySelector("#productoForm button[type=submit]").textContent = "Agregar Producto";
   } catch (err) {
     console.error("Error al guardar producto:", err);
   }
 });
 
-// Cargar todos los productos
+// Cargar producto si estamos editando desde ?editar=ID
+async function cargarProductoEditar(id) {
+  try {
+    const res = await fetch(`${BACKEND_URL}/${id}`);
+    const producto = await res.json();
+
+    document.getElementById("nombre").value = producto.nombre;
+    document.getElementById("descripcion").value = producto.descripcion;
+    document.getElementById("precio").value = producto.precio;
+    document.getElementById("cantidad").value = producto.cantidad;
+    document.getElementById("categoria").value = producto.categoria;
+    
+    productoEditando = producto;
+
+    const imagenActual = document.getElementById("imagenActual");
+    if (producto.imagen && imagenActual) {
+      imagenActual.src = URL_BASE_IMAGENES + producto.imagen;
+      imagenActual.style.display = "block";
+    }
+
+    document.querySelector("#productoForm button[type=submit]").textContent = "Editar Producto";
+  } catch (err) {
+    console.error("Error al cargar producto para edición:", err);
+  }
+}
+
 async function cargarProductos() {
   try {
     const res = await fetch(BACKEND_URL);
     const productos = await res.json();
-
     renderizarTabla(productos);
     renderizarCategorias(productos);
   } catch (err) {
@@ -61,13 +129,12 @@ async function cargarProductos() {
   }
 }
 
-// Renderiza tabla principal
 function renderizarTabla(productos) {
+  if (!productosBody) return;
   productosBody.innerHTML = "";
 
   productos.forEach((producto) => {
     const tr = document.createElement("tr");
-
     tr.innerHTML = `
       <td>${producto.nombre}</td>
       <td><img src="${URL_BASE_IMAGENES + producto.imagen}" width="50" height="50" /></td>
@@ -80,34 +147,33 @@ function renderizarTabla(productos) {
         <button class="btn-eliminar" data-id="${producto.id}">Eliminar</button>
       </td>
     `;
-
     productosBody.appendChild(tr);
   });
 
   document.querySelectorAll(".btn-editar").forEach((btn) =>
-    btn.addEventListener("click", () => editarProducto(btn.dataset.id))
+    btn.addEventListener("click", () =>
+      window.location.href = `/pages/crud/crud.html?editar=${btn.dataset.id}`
+    )
   );
-
   document.querySelectorAll(".btn-eliminar").forEach((btn) =>
     btn.addEventListener("click", () => eliminarProducto(btn.dataset.id))
   );
 }
 
-// Renderiza productos por categoría (solo 3)
 function renderizarCategorias(productos) {
+  if (!categoriasContainer) return;
   categoriasContainer.innerHTML = "";
 
-  const categorias = ["Granizadoras", "Insumos", "Dulces"];
-
+  const categorias = ["Granizadoras", "Insumos", "Dulces", "Ofertas"];
   categorias.forEach((cat) => {
-    const productosCat = productos.filter(p => p.categoria === cat);
+    const productosCat = productos.filter((p) => p.categoria === cat);
     if (productosCat.length === 0) return;
 
     const div = document.createElement("div");
     div.innerHTML = `<h3>${cat}</h3><ul class="barra-productos"></ul>`;
     const ul = div.querySelector("ul");
 
-    productosCat.forEach(p => {
+    productosCat.forEach((p) => {
       const li = document.createElement("li");
       li.innerHTML = `
         <strong>${p.nombre}</strong> - $${p.precio}<br>
@@ -121,25 +187,6 @@ function renderizarCategorias(productos) {
   });
 }
 
-// Editar producto
-async function editarProducto(id) {
-  try {
-    const res = await fetch(`${BACKEND_URL}/${id}`);
-    const producto = await res.json();
-
-    document.getElementById("nombre").value = producto.nombre;
-    document.getElementById("descripcion").value = producto.descripcion;
-    document.getElementById("precio").value = producto.precio;
-    document.getElementById("cantidad").value = producto.cantidad;
-    document.getElementById("categoria").value = producto.categoria;
-
-    productoEditando = producto;
-  } catch (err) {
-    console.error("Error al cargar producto:", err);
-  }
-}
-
-// Eliminar producto
 async function eliminarProducto(id) {
   try {
     await fetch(`${BACKEND_URL}/${id}`, { method: "DELETE" });
@@ -150,13 +197,11 @@ async function eliminarProducto(id) {
   }
 }
 
-// Cierre de sesión
 function cerrarSesion() {
   alert("Sesión cerrada");
   window.location.href = "/login";
 }
 
-// Actualizar otras páginas (guardando en localStorage)
 async function actualizarOtrasPaginas() {
   try {
     const res = await fetch(BACKEND_URL);
@@ -168,5 +213,4 @@ async function actualizarOtrasPaginas() {
   }
 }
 
-// Cargar productos al iniciar
 window.addEventListener("DOMContentLoaded", cargarProductos);

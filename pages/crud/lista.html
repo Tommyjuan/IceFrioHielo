@@ -7,8 +7,14 @@
   <script defer src="/js/crud/lista.js"></script>
 </head>
 <body>
+
+  <div style="margin: 10px 0; text-align: right;">
+    <a href="/pages/crud/crud.html"><button>Volver al CRUD</button></a>
+  </div>
+
   <div class="container">
     <h1>Lista de Productos</h1>
+
     <div class="tabla-responsive">
       <table>
         <thead>
@@ -19,13 +25,12 @@
             <th>Precio</th>
             <th>Cantidad</th>
             <th>Categoría</th>
+            <th>Acciones</th> <!-- Para los botones Editar/Eliminar -->
           </tr>
         </thead>
         <tbody id="listaProductosBody"></tbody>
       </table>
     </div>
   </div>
-
-
 </body>
 </html>

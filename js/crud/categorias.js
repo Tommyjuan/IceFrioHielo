@@ -1,8 +1,14 @@
-const URL_BASE_IMAGENES = "http://localhost:8080/uploads/";
-    const productos = JSON.parse(localStorage.getItem("productos_actualizados")) || [];
-    const contenedor = document.getElementById("categoriasContainer");
+const URL_BASE_IMAGENES = "http://localhost:8000/uploads/";
+const BACKEND_URL = "http://localhost:8000/api/productos";
 
+async function cargarPorCategorias() {
+  try {
+    const res = await fetch(BACKEND_URL);
+    const productos = await res.json();
+
+    const contenedor = document.getElementById("categoriasContainer");
     const categorias = ["Granizadoras", "Insumos", "Dulces", "Ofertas"];
+
     categorias.forEach(cat => {
       const filtrados = productos.filter(p => p.categoria === cat);
       if (filtrados.length === 0) return;
@@ -23,3 +29,9 @@ const URL_BASE_IMAGENES = "http://localhost:8080/uploads/";
 
       contenedor.appendChild(div);
     });
+  } catch (err) {
+    console.error("Error cargando productos por categoría:", err);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", cargarPorCategorias);

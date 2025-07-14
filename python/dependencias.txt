@@ -4,3 +4,4 @@ sqlalchemy
 pymysql
 pydantic[email]
 mysql-connector-python
+python-multipart
