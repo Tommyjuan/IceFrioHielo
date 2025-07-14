@@ -20,5 +20,12 @@ CREATE TABLE IF NOT EXISTS productos (
     descripcion TEXT NOT NULL,
     precio DECIMAL(10, 2) NOT NULL,
     cantidad INT NOT NULL,
-    categoria ENUM('Dulces', 'Granizadoras', 'Insumos') NOT NULL,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+    categoria ENUM('Dulces', 'Granizadoras', 'Insumos', 'Ofertas') NOT NULL
+);
+    
+-- ALTER TABLE productos 
+-- MODIFY COLUMN categoria 
+-- ENUM('Dulces', 'Granizadoras', 'Insumos', 'Ofertas') NOT NULL;
+
+-- USE icefriohielo;
+-- ALTER TABLE productos DROP COLUMN creado_en;
