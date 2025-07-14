@@ -65,7 +65,7 @@ function cargarProductosPorCategoria(categoria, contenedorId) {
       <img src="http://localhost:8000/uploads/${producto.imagen}" alt="${producto.nombre}">
       <p>${producto.descripcion}</p>
       <p class="precio">$${producto.precio}</p>
-      <button class="agregar-al-carrito" onclick="agregarAlCarrito('${producto.nombre}', '$${producto.precio}')">
+      <button class="agregar-al-carrito" onclick='agregarAlCarrito(${JSON.stringify(producto)})'>
         <span class="icono-carrito">&#128722;</span> Agregar al carrito
       </button>
     `;
@@ -91,4 +91,21 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarProductosPorCategoria("Ofertas", "productosOfertas");
   }
 });
+
+
+
+function agregarAlCarrito(producto) {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  const existente = carrito.find(p => p.id === producto.id);
+  if (existente) {
+    existente.cantidad += 1;
+  } else {
+    producto.cantidad = 1;
+    carrito.push(producto);
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert("Producto agregado al carrito");
+}
 
