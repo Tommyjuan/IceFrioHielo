@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Recuperar Contraseña</title>
-    <script src="/js/admin/recuperar_contraseña.js"></script>
     <link rel="stylesheet" href="/css/admin/recuperar_contraseña.css">
+    <script defer src="/js/admin/recuperar_contraseña.js"></script>
 </head>
 <body>
-    <h2>Recuperar contraseña</h2>
-    <input type="email" id="email" placeholder="Ingresa tu correo">
-    <button onclick="solicitarToken()">Solicitar token</button>
+    <div class="contenedor">
+        <div class="formulario">
+            <h2>Recuperar contraseña</h2>
+            <input type="email" id="email" placeholder="Ingresa tu correo">
+            <button onclick="solicitarToken()">Solicitar token</button>
 
-    <h2>Restablecer contraseña</h2>
-    <input type="text" id="token" placeholder="Token recibido">
-    <input type="password" id="nueva-contrasena" placeholder="Nueva contraseña">
-    <button onclick="restablecerContrasena()">Cambiar contraseña</button>
+            <h2>Restablecer contraseña</h2>
+            <input type="text" id="token" placeholder="Token recibido">
+            <input type="password" id="nueva-contrasena" placeholder="Nueva contraseña">
+            <button onclick="restablecerContrasena()">Cambiar contraseña</button>
+        </div>
+    </div>
 </body>
 </html>
