@@ -1,10 +1,12 @@
 /* Contacto */ 
   
   .contacto-hero {
-    background: linear-gradient(135deg, violet, rgb(199, 21, 199));
+    background: linear-gradient(135deg, rgb(240, 147, 240), rgb(243, 113, 243));
     color: white;
     text-align: center;
     padding: 60px 20px;
+    box-shadow: 0 4px 10px violet;
+
   }
   
   .contacto-hero h1 {
@@ -52,3 +54,17 @@
     color: violet;
     font-weight: bold;
   }
+
+ .btn-inicio{
+  color:violet;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.btn-inicio:hover{
+  color: white;
+  background-color: rgb(243, 160, 243);
+}
+

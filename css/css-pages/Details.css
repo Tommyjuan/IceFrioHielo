@@ -1,101 +1,5 @@
-/* -------------------- CABECERA -------------------- */
-.cabecera {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: linear-gradient(90deg, violet, rgb(243, 108, 243));
-  color: white;
-  font-family: Arial, sans-serif;
-}
-.cabecera .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-.cabecera .menu ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-.cabecera .menu a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-.cabecera .menu a:hover {
-  text-decoration: underline;
-}
-
-/* -------------------- PIE DE PÁGINA -------------------- */
-.pie {
-  background-color: #222;
-  color: #eee;
-  padding: 2rem;
-  font-family: Arial, sans-serif;
-}
-.pie .contenido {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.pie .columna {
-  flex: 1;
-  min-width: 200px;
-  margin-bottom: 1rem;
-}
-.pie .columna h3,
-.pie .columna h4 {
-  color: #00c3ff;
-}
-.pie .columna ul {
-  list-style: none;
-  padding: 0;
-}
-.pie .columna ul li {
-  margin: 0.3rem 0;
-}
-.pie .columna ul a {
-  color: #ccc;
-  text-decoration: none;
-}
-.pie .columna ul a:hover {
-  text-decoration: underline;
-}
-.pie .copy {
-  text-align: center;
-  margin-top: 1rem;
-  border-top: 1px solid #444;
-  padding-top: 1rem;
-  font-size: 0.9rem;
-  color: #888;
-}
-
-/* -------------------- HEADER GENERAL -------------------- */
-header {
-  background-color: violet;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-}
-
-/* -------------------- BUSCADOR -------------------- */
-.buscador-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px;
-  background: violet;
-  border-radius: 8px;
-  margin-left: 20px;
-  margin-right: 10px;
-}
-#buscador {
-  padding: 6px 12px;
-  width: 250px;
-  border-radius: 6px;
-  border: 1px solid #44aaee;
+body{
+  padding-top: 143px;
 }
 
 /* -------------------- GALERÍA -------------------- */
@@ -115,51 +19,6 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-/* -------------------- MENÚ DROPDOWN -------------------- */
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: rgba(219, 146, 62, 0.623);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  color: rgb(15, 15, 15);
-  padding: 14px 16px;
-  background-color: inherit;
-}
-.navbar a:hover,
-.dropdown:hover .dropbtn {
-  background-color: rgba(42, 230, 151, 0.767);
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px #fff;
-  z-index: 1;
-}
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-.dropdown-content a:hover {
-  background-color: rgba(79, 183, 243, 0.986);
-}
-.dropdown:hover .dropdown-content {
-  display: block;
 }
 
 /* -------------------- PRODUCTOS -------------------- */
@@ -189,7 +48,7 @@ header {
 }
 .producto .precio {
   font-weight: bold;
-  color: purple;
+  color: black;
   margin-bottom: 10px;
 }
 .agregar-al-carrito {
@@ -199,7 +58,7 @@ header {
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 5px;
-  transform: skew(-33deg) !important;
+  transform: skew(-20deg) !important;
 }
 .agregar-al-carrito:hover {
   background-color: rgb(240, 83, 240);
@@ -209,69 +68,4 @@ header {
   font-size: 15px;
 }
 
-/* -------------------- WHATSAPP -------------------- */
-#whatsapp-link {
-  display: inline-block;
-  padding: 15px 15px;
-  background-color: #25d366;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-#whatsapp-link:hover {
-  background-color: #128C7E;
-}
 
-/* -------------------- FOOTER NUEVO -------------------- */
-.footer {
-  background-color: #0b2154;
-  color: white;
-  padding: 40px 20px;
-  font-family: Arial, sans-serif;
-}
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-.footer-column {
-  flex: 1 1 200px;
-  margin: 20px;
-}
-.footer-column h4 {
-  color: #fff;
-  margin-bottom: 10px;
-}
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-}
-.footer-column ul li {
-  margin-bottom: 6px;
-  color: #ddd;
-}
-.footer-column ul li a {
-  color: #ddd;
-  text-decoration: none;
-}
-.footer-column ul li a:hover {
-  text-decoration: underline;
-}
-.footer-bottom {
-  text-align: center;
-  border-top: 1px solid #1f3974;
-  padding-top: 30px;
-  margin-top: 30px;
-}
-.social-icons {
-  margin-top: 20px;
-}
-.social-icons a {
-  margin: 0 10px;
-  color: white;
-  font-size: 20px;
-  text-decoration: none;
-}
