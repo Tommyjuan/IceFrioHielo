@@ -111,3 +111,24 @@ def eliminar_producto(id: int, db: Session = Depends(get_db)):
     if result.rowcount == 0:
         raise HTTPException(status_code=404, detail="Producto no encontrado")
     return {"mensaje": "Producto eliminado"}
+
+
+@router.patch("/api/productos/{id}/actualizar-cantidad")
+def actualizar_cantidad(id: int, nueva_cantidad: int, db: Session = Depends(get_db)):
+    query = select(Producto).where(Producto.c.id == id)
+    producto = db.execute(query).mappings().fetchone()
+
+    if not producto:
+        raise HTTPException(status_code=404, detail="Producto no encontrado")
+
+    if nueva_cantidad < 0:
+        raise HTTPException(status_code=400, detail="La cantidad no puede ser negativa")
+
+    update_query = (
+        update(Producto)
+        .where(Producto.c.id == id)
+        .values(cantidad=nueva_cantidad)
+    )
+    db.execute(update_query)
+    db.commit()
+    return {"mensaje": "Cantidad actualizada"}
