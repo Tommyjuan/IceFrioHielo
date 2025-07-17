@@ -96,8 +96,6 @@ button,
 }
 
 
-
-
 .total-container {
     width: 90%;
     margin: 20px auto;
@@ -115,9 +113,9 @@ a.button-link {
 }
 
 .btn-comprar {
-  background-color: #007bff;
+  background-color: #9e44c2;
 }
 
 .btn-comprar:hover {
-  background-color: #0056b3;
+  background-color: #9c36c4;
 }

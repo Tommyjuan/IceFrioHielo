@@ -55,7 +55,7 @@ button:hover {
 
 table {
   width: 100%;
-  border-collapse: separate; /* Permite usar border-spacing */
+  border-collapse: separate; 
   border-spacing: 10px;
 }
 
@@ -67,7 +67,7 @@ th{
   text-align: center;
   font-weight: bold;
   font-size: 14px;
-  white-space: nowrap; /* Evita que se rompan las palabras */
+  white-space: nowrap; 
 }
 
 td {
@@ -112,7 +112,6 @@ img {
     text-align: center;
 }
 
-/*para que los formularios sean más legibles y estén mejor organizados*/
 .form-grid {
     display: flex;
     flex-direction: column;
