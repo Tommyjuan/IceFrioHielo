@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registro Admin</title>
+  <script src="/js/admin/registro_admin.js"></script>
+  <link rel="stylesheet" href="/css/admin/registro_admin.css">
+</head>
+<body>
+  <div class="registro-container">
+    
+    <div class="imagen-lateral">
+      <img src="/img/eladio.png" alt="Administrador">
+    </div>
+
+    <main>
+      <h2>Registrar Administrador</h2>
+
+      <form id="adminForm">
+  <div class="campo">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+  </div>
+
+  <div class="campo">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+
+  <div class="campo">
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required>
+  </div>
+
+  <div class="campo">
+    <label for="token">Token secreto:</label>
+    <input type="text" id="token" name="token" placeholder="Ej: CLAVE-SECRETA-123" required>
+  </div>
+
+  <button type="submit">Registrar Admin</button>
+</form>
+
+    </main>
+
+  </div>
+</body>

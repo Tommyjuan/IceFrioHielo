@@ -1,46 +1,111 @@
-// Carrusel funcional
-    const carouselInner = document.querySelector('.carousel-inner');
-    const items = document.querySelectorAll('.carousel-item');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    let currentIndex = 0;
-    let intervalId;
+function includeHTML() {
+  document.querySelectorAll("[data-include]").forEach((el) => {
+    const file = el.getAttribute("data-include");
+    if (!file) return;
 
-    function updateCarousel() {
-      carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", file, true);
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        if (this.status === 200) el.innerHTML = this.responseText;
+        else el.innerHTML = `<!-- Error al cargar ${file} -->`;
+      }
+    };
+    xhr.send();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  includeHTML();
+
+  // Carrusel automático
+  const carruselInner = document.querySelector(".carrusel-inner");
+  const carruselItems = document.querySelectorAll(".carrusel-item");
+  let currentIndex = 0;
+
+  if (carruselInner && carruselItems.length > 0) {
+    function cambiarImagen() {
+      currentIndex = (currentIndex + 1) % carruselItems.length;
+      carruselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 
-    function startAutoSlide() {
-      intervalId = setInterval(() => {
-        currentIndex = (currentIndex + 1) % items.length;
-        updateCarousel();
-      }, 5000);
-    }
+    setInterval(cambiarImagen, 4000);
+  }
 
-    function resetAutoSlide() {
-      clearInterval(intervalId);
-      startAutoSlide();
-    }
+  // botón tipo hamburguesa del header
+  const toggleButton = document.querySelector(".navbar-toggler");
+  const searchForm = document.querySelector(".search-form");
 
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % items.length;
-      updateCarousel();
-      resetAutoSlide();
+  if (toggleButton && searchForm) {
+    toggleButton.addEventListener("click", function () {
+      if (window.innerWidth < 992) {
+        searchForm.classList.toggle("d-none");
+      }
     });
+  }
+});
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
-      updateCarousel();
-      resetAutoSlide();
-    });
 
-    // Toggle de tema oscuro/claro
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.dataset.theme = 
-        document.body.dataset.theme === 'dark' ? 'light' : 'dark';
-    });
+/* carga los productos a sus respetivas paguinas */
+function cargarProductosPorCategoria(categoria, contenedorId) {
+  const contenedor = document.getElementById(contenedorId);
+  if (!contenedor) return;
 
-    // Iniciar carrusel automático
-    startAutoSlide();
-  
+  const productosStr = localStorage.getItem("productos_actualizados");
+  if (!productosStr) return;
+
+  const productos = JSON.parse(productosStr);
+  const filtrados = productos.filter(p => p.categoria === categoria);
+
+  contenedor.innerHTML = "";
+  filtrados.forEach(producto => {
+    const div = document.createElement("div");
+    div.classList.add("producto");
+    div.innerHTML = `
+      <img src="http://localhost:8000/uploads/${producto.imagen}" alt="${producto.nombre}">
+      <p>${producto.descripcion}</p>
+      <p class="precio">$${producto.precio}</p>
+      <button class="agregar-al-carrito" onclick='agregarAlCarrito(${JSON.stringify(producto)})'>
+        <span class="icono-carrito">&#128722;</span> Agregar al carrito
+      </button>
+    `;
+    contenedor.appendChild(div);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Detectar la página actual y cargar según corresponda
+  if (document.getElementById("productosDulces")) {
+    cargarProductosPorCategoria("Dulces", "productosDulces");
+  }
+
+  if (document.getElementById("productosInsumos")) {
+    cargarProductosPorCategoria("Insumos", "productosInsumos");
+  }
+
+  if (document.getElementById("productosGranizadoras")) {
+    cargarProductosPorCategoria("Granizadoras", "productosGranizadoras");
+  }
+
+  if (document.getElementById("productosOfertas")) {
+    cargarProductosPorCategoria("Ofertas", "productosOfertas");
+  }
+});
+
+
+
+function agregarAlCarrito(producto) {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  const existente = carrito.find(p => p.id === producto.id);
+  if (existente) {
+    existente.cantidad += 1;
+  } else {
+    producto.cantidad = 1;
+    carrito.push(producto);
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert("Producto agregado al carrito");
+}
+

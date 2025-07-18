@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="/css/carrito/carrito.css" />
+  <script defer src="/js/carrito/carrito.js"></script>
+</head>
+<body>
+  <h1>Carrito de Compras</h1>
+
+  <table id="tabla-carrito">
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí se llenará dinámicamente con JS -->
+    </tbody>
+  </table>
+
+  <div class="total-container">
+    <p>
+      <strong>Total:</strong>
+      <span id="total">$0</span>
+    </p>
+    <a href="/checkout.html" class="button-link btn-comprar">Comprar</a>
+  </div>
+</body>
+</html>
+

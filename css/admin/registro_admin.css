@@ -1,0 +1,88 @@
+body {
+  background: linear-gradient(135deg, #d1c4e9, #f3e5f5);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.registro-container {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px violet;
+}
+
+.imagen-lateral img {
+  width: 200px;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+main {
+  max-width: 400px;
+}
+
+h2 {
+  text-align: center;
+  color: violet;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border 0.3s;
+  font-size: 1rem;
+  transform: skew(-20deg);
+}
+
+input:focus {
+  border-color: violet;
+  outline: none;
+}
+
+
+button {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: violet;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  transform: skew(-20deg);
+
+}
+
+button:hover {
+  background-color: #6a1b9a;
+}
